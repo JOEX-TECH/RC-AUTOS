@@ -1,214 +1,291 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RC AUTOS | Milla de Oro Medellín</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC AUTOS | Milla de Oro Medellín - Exclusividad y Confianza</title>
+    
+    <meta name="description" content="RC AUTOS - Exclusividad automotriz en la Milla de Oro, Medellín.">
+    <meta name="author" content="JOEX AGENCIA DIGITAL">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-<style>
-:root{
-    --red:#E31E24;
-    --black:#050505;
-    --white:#fff;
-}
+    <style>
+        /* ===========================================================
+           1. RESET & VARIABLES
+           =========================================================== */
+        :root {
+            --red: #E31E24;
+            --dark: #050505;
+            --gray: #aaa;
+            --glass: rgba(255, 255, 255, 0.05);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: #000; color: #fff; font-family: 'Roboto', sans-serif; overflow-x: hidden; line-height: 1.6; }
+        h1, h2, h3, .logo, .btn-special { font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
 
-body{
-    background:#000;
-    color:#fff;
-    font-family:Arial;
-    overflow-x:hidden;
-}
+        /* ===========================================================
+           2. LOADER PRO (CARRO ANIMADO + BARRA)
+           =========================================================== */
+        #loader {
+            position: fixed; width: 100%; height: 100vh; background: #000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;
+        }
+        .road { width: 300px; height: 3px; background: #111; position: relative; overflow: hidden; margin-top: 20px; }
+        .progress-line { width: 0%; height: 100%; background: var(--red); box-shadow: 0 0 15px var(--red); transition: 0.1s; }
+        .car {
+            width: 100px; height: 40px; background: var(--red); border-radius: 5px;
+            position: absolute; bottom: 80px; animation: drive 2.2s ease forwards;
+            box-shadow: 0 0 25px var(--red);
+        }
+        @keyframes drive {
+            0% { transform: translateY(100px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-150px); opacity: 0; }
+        }
+        .loader-text { margin-top: 20px; font-family: Orbitron; letter-spacing: 5px; color: #666; font-size: 10px; }
 
-/* LOADER CARRO */
-#loader{
-    position:fixed;
-    width:100%;
-    height:100vh;
-    background:#000;
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-    z-index:9999;
-}
+        /* ===========================================================
+           3. HEADER
+           =========================================================== */
+        header {
+            position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between;
+            align-items: center; padding: 25px 8%; background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px); z-index: 1000; transition: var(--transition);
+        }
+        header.sticky { padding: 15px 8%; background: #000; border-bottom: 1px solid #222; }
+        .logo { font-weight: 900; font-size: 1.5rem; color: #fff; }
+        .logo span { color: var(--red); }
+        nav a { margin: 0 15px; color: var(--gray); text-decoration: none; font-size: 13px; font-weight: 700; transition: 0.3s; }
+        nav a:hover { color: var(--red); }
 
-#loader i{
-    font-size:60px;
-    color:var(--red);
-    animation:car 1.5s ease forwards;
-}
+        /* ===========================================================
+           4. HERO
+           =========================================================== */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
+        .hero video { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; z-index: -1; }
+        .hero-overlay { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, transparent 20%, #000 90%); }
+        .hero-content { z-index: 2; padding: 0 20px; }
+        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); margin-bottom: 10px; }
+        .hero span { color: var(--red); }
+        .hero p { color: var(--gray); font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 30px; }
 
-@keyframes car{
-    0%{transform:translateY(200px);opacity:0;}
-    50%{opacity:1;}
-    100%{transform:translateY(-120vh);opacity:0;}
-}
+        /* ===========================================================
+           5. BOTONES & UI
+           =========================================================== */
+        .btn {
+            display: inline-block; padding: 18px 45px; background: var(--red); color: #fff;
+            text-decoration: none; font-family: Orbitron; font-size: 13px; font-weight: 900;
+            transition: var(--transition); border: none; cursor: pointer;
+        }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(227, 30, 36, 0.4); letter-spacing: 3px; }
 
-/* HERO VIDEO */
-#hero{
-    height:100vh;
-    position:relative;
-}
+        /* ===========================================================
+           6. SECCIONES
+           =========================================================== */
+        .section { padding: 100px 8%; text-align: center; opacity: 0; transform: translateY(50px); transition: 1s; }
+        .section.active { opacity: 1; transform: translateY(0); }
+        .section-title { font-size: 2.5rem; margin-bottom: 50px; position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; width: 50%; height: 3px; background: var(--red); bottom: -10px; left: 25%; }
 
-#hero video{
-    position:absolute;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
+        /* Stats */
+        .stats { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; margin-top: 40px; }
+        .stat { font-size: 3.5rem; font-family: Orbitron; font-weight: 900; color: #fff; }
+        .stat span { display: block; font-size: 12px; color: var(--red); letter-spacing: 3px; }
 
-.overlay{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:linear-gradient(90deg,#000 30%,transparent);
-}
+        /* Inventario Cards */
+        .grid-cars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .car-card { background: var(--glass); border: 1px solid #222; overflow: hidden; transition: var(--transition); }
+        .car-card:hover { border-color: var(--red); transform: translateY(-10px); }
+        .car-img { width: 100%; height: 220px; background-size: cover; background-position: center; }
+        .car-info { padding: 25px; text-align: left; }
+        .car-info h3 { font-family: Orbitron; font-size: 1.1rem; margin-bottom: 10px; }
 
-.content{
-    position:relative;
-    z-index:2;
-    padding:100px 8%;
-}
+        /* ===========================================================
+           7. COMPONENTES FLOTANTES
+           =========================================================== */
+        #audio-btn {
+            position: fixed; bottom: 30px; left: 30px; background: rgba(0,0,0,0.8);
+            padding: 12px 20px; border-radius: 50px; border: 1px solid #333;
+            cursor: pointer; z-index: 1000; display: flex; align-items: center; gap: 10px;
+        }
+        .visualizer { display: flex; gap: 3px; height: 15px; align-items: flex-end; }
+        .bar { width: 3px; background: var(--red); height: 5px; }
+        .bar.anim { animation: bounce 0.8s infinite ease-in-out; }
+        @keyframes bounce { 0%, 100% { height: 5px; } 50% { height: 15px; } }
 
-h1{
-    font-size:60px;
-}
+        .whatsapp {
+            position: fixed; bottom: 30px; right: 30px; background: #25D366;
+            width: 60px; height: 60px; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; font-size: 30px;
+            color: #fff; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
 
-.btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:15px 30px;
-    background:var(--red);
-    color:#fff;
-    text-decoration:none;
-    font-weight:bold;
-}
+        /* ===========================================================
+           8. FAQ
+           =========================================================== */
+        .faq { max-width: 800px; margin: 50px auto; text-align: left; }
+        .faq-item { background: #111; margin-bottom: 15px; padding: 20px; cursor: pointer; border-left: 3px solid #333; transition: 0.3s; }
+        .faq-item:hover { border-left-color: var(--red); }
+        .faq-item h4 { font-family: Orbitron; font-size: 0.9rem; }
 
-/* HEADER */
-header{
-    position:fixed;
-    width:100%;
-    padding:20px 8%;
-    display:flex;
-    justify-content:space-between;
-    z-index:1000;
-}
+        footer { padding: 60px; border-top: 1px solid #111; text-align: center; color: #444; font-size: 12px; font-family: Orbitron; }
 
-header img{width:120px;}
-
-/* AUDIO */
-#audio-player{
-    position:fixed;
-    bottom:30px;
-    left:30px;
-    background:#000;
-    padding:15px;
-    border:1px solid var(--red);
-    cursor:pointer;
-}
-
-/* WHATSAPP */
-.ws{
-    position:fixed;
-    bottom:30px;
-    right:30px;
-    background:#25D366;
-    width:60px;
-    height:60px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    font-size:30px;
-}
-
-/* SECCION */
-.section{
-    padding:120px 8%;
-    text-align:center;
-}
-
-</style>
+    </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-    <i class="fas fa-car-side"></i>
-</div>
-
-<!-- HEADER -->
-<header>
-    <img src="RC AUTOS.jpg">
-    <a href="https://listado.mercadolibre.com.co/pagina/rcautos/vehiculos/_OrderId_PRICE*DESC_NoIndex_True" class="btn" target="_blank">CATÁLOGO</a>
-</header>
-
-<!-- HERO -->
-<section id="hero">
-    <video autoplay muted loop playsinline>
-        <source src="video rc.mp4" type="video/mp4">
-    </video>
-
-    <div class="overlay"></div>
-
-    <div class="content">
-        <h1>SIENTE EL PODER</h1>
-        <p>Compra y venta de vehículos premium en Medellín</p>
-
-        <a href="https://listado.mercadolibre.com.co/pagina/rcautos/vehiculos/_OrderId_PRICE*DESC_NoIndex_True" target="_blank" class="btn">
-            VER CATÁLOGO
-        </a>
+    <div id="loader">
+        <div class="car"></div>
+        <div class="road">
+            <div class="progress-line" id="progress"></div>
+        </div>
+        <div class="loader-text">CALENTANDO MOTORES...</div>
     </div>
-</section>
 
-<!-- SECCION -->
-<section class="section">
-    <h2>RC AUTOS</h2>
-    <p>Experiencia premium en vehículos de alta gama.</p>
-</section>
+    <header id="header">
+        <div class="logo">RC <span>AUTOS</span></div>
+        <nav>
+            <a href="#hero">Inicio</a>
+            <a href="#inventario">Stock</a>
+            <a href="#ig">Instagram</a>
+        </nav>
+        <a href="https://wa.me/573043741941" class="btn" style="padding: 10px 20px; font-size: 10px;">CITA VIP</a>
+    </header>
 
-<!-- AUDIO -->
-<div id="audio-player" onclick="toggleAudio()">
-    <i class="fas fa-play" id="icon"></i>
-</div>
+    <section id="hero" class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="video rc.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content animate__animated animate__fadeIn">
+            <p>MILLA DE ORO · MEDELLÍN</p>
+            <h1>CONDUCE TU <span>ÉXITO</span></h1>
+            <div class="hero-actions">
+                <a href="#inventario" class="btn">VER FIERROS</a>
+                <a href="#ig" class="btn" style="background:transparent; border:1px solid #fff; margin-left:15px;">EXPLORAR IG</a>
+            </div>
+        </div>
+    </section>
 
-<audio id="audio" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
+    <section class="section">
+        <div class="stats">
+            <div class="stat">+300 <span>VENTAS</span></div>
+            <div class="stat">+150 <span>CLIENTES VIP</span></div>
+            <div class="stat">24/7 <span>SOPORTE</span></div>
+        </div>
+    </section>
 
-<!-- WHATSAPP -->
-<a href="https://wa.me/573043741941" class="ws" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
+    <section id="inventario" class="section">
+        <h2 class="section-title">NUESTROS VEHÍCULOS</h2>
+        <div class="grid-cars">
+            <div class="car-card">
+                <div class="car-img" style="background-image: url('https://http2.mlstatic.com/D_NQ_NP_2X_938209-MCO109818056542_042026-F.webp');"></div>
+                <div class="car-info">
+                    <h3>Honda X-adv750</h3>
+                    <p style="color:var(--gray); font-size:13px;">Modelo 2025 | 4.400 KM</p>
+                </div>
+            </div>
+            <div class="car-card">
+                <div class="car-img" style="background-image: url('https://http2.mlstatic.com/D_NQ_NP_2X_833626-MCO110952939491_042026-F.webp');"></div>
+                <div class="car-info">
+                    <h3>TOYOTA PRADO LC 150 </h3>
+                    <p style="color:var(--gray); font-size:13px;">Blindaje II Plus | 2020</p>
+                </div>
+            </div>
+        </div>
+        <a href="https://listado.mercadolibre.com.co/pagina/rcautos/vehiculos" target="_blank" class="btn" style="margin-top: 60px;">CATÁLOGO COMPLETO M. LIBRE</a>
+    </section>
 
-<script>
+    <section id="ig" class="section">
+        <h2 class="section-title">SÍGUENOS EN IG</h2>
+        <div style="max-width:500px; margin:auto; border:1px solid #222;">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/rcautos_/" data-instgrm-version="14"></blockquote>
+        </div>
+    </section>
 
-/* LOADER */
-window.onload = () => {
-    setTimeout(()=>{
-        document.getElementById("loader").style.display="none";
-    },1500);
-}
+    <section class="section">
+        <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
+        <div class="faq">
+            <div class="faq-item"><h4>¿Aceptan permuta por mi vehículo actual?</h4></div>
+            <div class="faq-item"><h4>¿Tienen convenios con bancos para financiación?</h4></div>
+            <div class="faq-item"><h4>¿Cómo es el proceso de peritaje para consignación?</h4></div>
+        </div>
+    </section>
 
-/* AUDIO */
-let audio = document.getElementById("audio");
-let icon = document.getElementById("icon");
+    <footer>
+        <img src="RC AUTOS.jpg" alt="RC Autos" style="width:100px; margin-bottom:20px; filter:grayscale(1);">
+        <p>RC AUTOS © 2026.</p>
+    </footer>
 
-function toggleAudio(){
-    if(audio.paused){
-        audio.play();
-        icon.className="fas fa-pause";
-    }else{
-        audio.pause();
-        icon.className="fas fa-play";
-    }
-}
+    <div id="audio-btn" onclick="toggleMusic()">
+        <div class="visualizer" id="visualizer">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+        <span id="music-text" style="font-size:10px; font-family:Orbitron;">PLAY RADIO</span>
+    </div>
 
-</script>
+    <audio id="music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <a href="https://wa.me/573043741941" class="whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script async src="//www.instagram.com/embed.js"></script>
+    <script>
+        // 1. LOADER REAL
+        window.addEventListener('load', () => {
+            let prog = document.getElementById('progress');
+            let val = 0;
+            let interval = setInterval(() => {
+                val += 5;
+                prog.style.width = val + '%';
+                if(val >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('loader').style.display = 'none';
+                    }, 500);
+                }
+            }, 50);
+        });
+
+        // 2. STICKY HEADER & SCROLL ANIMATION
+        window.onscroll = () => {
+            const h = document.getElementById('header');
+            h.classList.toggle('sticky', window.scrollY > 100);
+            
+            document.querySelectorAll('.section').forEach(sec => {
+                let top = sec.getBoundingClientRect().top;
+                if(top < window.innerHeight - 100) sec.classList.add('active');
+            });
+        };
+
+        // 3. MUSIC PLAYER
+        const audio = document.getElementById('music');
+        const bars = document.querySelectorAll('.bar');
+        let playing = false;
+
+        function toggleMusic() {
+            if(!playing) {
+                audio.play();
+                document.getElementById('music-text').innerText = "ON AIR";
+                bars.forEach(b => b.classList.add('anim'));
+            } else {
+                audio.pause();
+                document.getElementById('music-text').innerText = "PAUSED";
+                bars.forEach(b => b.classList.remove('anim'));
+            }
+            playing = !playing;
+        }
+    </script>
 
 </body>
 </html>
