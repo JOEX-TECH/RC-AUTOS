@@ -189,15 +189,28 @@
             });
         }
 
-        function update(id, price) {
-            const pct = document.getElementById(`range-${id}`).value;
-            const inicial = price * (pct/100);
-            const cuota = ((price - inicial) * TASA_MV * Math.pow(1+TASA_MV, 72)) / (Math.pow(1+TASA_MV, 72) - 1);
-            document.getElementById(`label-${id}`).innerText = `${pct}%`;
-            document.getElementById(`cuota-${id}`).innerText = `$ ${Math.round(cuota).toLocaleString()}/mes`;
-            const msg = `Me interesa el ${INVENTARIO.find(c=>c.id==id).name}. Cuota inicial: ${pct}%.`;
-            document.getElementById(`wa-${id}`).href = `https://wa.me/573043741941?text=${encodeURIComponent(msg)}`;
-        }
+function update(id, price) {
+    const pct = document.getElementById(`range-${id}`).value;
+    const inicial = price * (pct / 100);
+    const montoAFinanciar = price - inicial;
+    
+    let cuota = 0;
+    if (montoAFinanciar > 0) {
+        // Cálculo de cuota mensual a 72 meses (puedes ajustar el plazo aquí)
+        cuota = (montoAFinanciar * TASA_MV * Math.pow(1 + TASA_MV, 72)) / (Math.pow(1 + TASA_MV, 72) - 1);
+    }
+
+    document.getElementById(`label-${id}`).innerText = `${pct}%`;
+    document.getElementById(`cuota-${id}`).innerText = pct == 100 ? "PAGO DE CONTADO" : `$ ${Math.round(cuota).toLocaleString()}/mes`;
+    
+    // Mensaje de WhatsApp dinámico
+    const carName = INVENTARIO.find(c => c.id == id).name;
+    const msg = pct == 0 
+        ? `Hola! Me interesa el ${carName} con financiación del 100% (sin inicial).`
+        : `Hola! Me interesa el ${carName}. Daría una inicial del ${pct}% ($${inicial.toLocaleString()}).`;
+        
+    document.getElementById(`wa-${id}`).href = `https://wa.me/573043741941?text=${encodeURIComponent(msg)}`;
+}
 
         function removeLoader() {
             const loader = document.getElementById('loader');
